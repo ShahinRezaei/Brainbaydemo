@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<Brainbay.Common.Entities.Origin>
+
+
+@{
+    ViewData["Title"] = "Planets";
+}
+
+
+<div class="alert alert-info">
+    <h4>@ViewData["Title"]</h4>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for planets..." title="Type in a name">
+        <table class="table table-hover rounded" id="originTable">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                </tr>
+            </thead>
+            @{
+                foreach (var origin in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td><a asp-controller="Character" asp-action="PlanetCharacters" asp-route-plantName="@origin.Name">@origin.Name</a></td>
+                        </tr>
+                    </tbody>
+                }
+            }
+        </table>
+    </div>
+    </div>
+
+
+<script>
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("originTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,87 @@
+﻿@model Brainbay.Web.Models.CharacterViewModel
+
+@{
+    ViewData["Title"] = "Create Character";
+}
+
+
+<div class="alert alert-info">
+    <h4>@ViewData["Title"]</h4>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Url" class="control-label"></label>
+                <input asp-for="Url" class="form-control" />
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" asp-items="@Model.StatusList" class="form-control">
+                    <option> -- Select Status --</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Species" class="control-label"></label>
+                <select asp-for="Species" asp-items="@Model.SpeciesList" class="form-control">
+                    <option>-- Select Species --</option>
+                </select>
+                <span asp-validation-for="Species" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CharacterType" class="control-label"></label>
+                <select asp-for="CharacterType" asp-items="@Model.CharacterTypeList" class="form-control">
+                    <option>-- Select Character Type --</option>
+                </select>
+                <span asp-validation-for="CharacterType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" asp-items="@Model.GenderList" class="form-control">
+                    <option>-- Select Gender --</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <select asp-for="Location" asp-items="@Model.LocationList" class="form-control">
+                    <option>-- Select Location --</option>
+                </select>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Origin" class="control-label"></label>
+                <select asp-for="Origin" asp-items="@Model.OriginList" class="form-control">
+                    <option>-- Select Origin --</option>
+                </select>
+                <span asp-validation-for="Origin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

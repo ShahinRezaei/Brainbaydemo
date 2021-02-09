@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Brainbay.Common.Entities.Character>
+
+@{
+    ViewData["Title"] = "Planet Characters List";
+}
+
+
+<div class="alert alert-info">
+    <h4>@ViewData["Title"]</h4>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for characters..." title="Type in a name">
+        <table class="table table-hover rounded" id="charactersTable">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Image
+                    </th>
+                </tr>
+            </thead>
+            @{
+                foreach (var character in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>@character.Name</td>
+                            <td><img class="rounded" src="@character.Image" /></td>
+                        </tr>
+                    </tbody>
+                }
+            }
+        </table>
+    </div>
+</div>
+
+
+<script>
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("charactersTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
