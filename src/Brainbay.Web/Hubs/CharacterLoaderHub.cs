@@ -52,7 +52,7 @@ namespace Brainbay.Web.Hubs
                     await Clients.All.SendAsync("logerr", exp.Message);
                 }
 
-                Thread.Sleep(10000);
+                Thread.Sleep(300000);
             } while (!disconnected);
         }
 
